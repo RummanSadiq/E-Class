@@ -1,0 +1,92 @@
+
+
+/*#signIn{*/
+    /*-fx-padding: 8px 25px;*/
+    /*-fx-background-color: black;*/
+    /*-fx-font-size: 12pt;*/
+    /*-fx-text-fill: white;*/
+
+/*}*/
+
+/*#signUp{*/
+    /*-fx-padding: 8px 25px;*/
+    /*-fx-background-color: black;*/
+    /*-fx-font-size: 14pt;*/
+    /*-fx-text-fill: white;*/
+/*}*/
+
+.label{
+    -fx-text-fill: white;
+}
+
+#home{
+    -fx-background-image: url("/homescreen/image11.jpg");
+    -fx-background-repeat: stretch;
+    -fx-background-size: 150%;
+    -fx-background-position: center center;
+}
+
+.text{
+    -fx-font-smoothing-type: gray;
+}
+
+#time{
+    -fx-background-image: url(/icons/stime.png);
+    -fx-background-position:left center;
+    -fx-background-repeat: stretch;
+    -fx-background-size: 100%;
+}
+
+.text-field{
+    -fx-border-width: 1.5px;
+    -fx-border-color: #D7D7D7;
+    -fx-border-radius: 50px;
+    -fx-background-radius: 50px;
+    -fx-text-fill: black;
+    -fx-font-size: 15px;
+    /*-fx-padding: 5px 35px 5px 15px;*/
+    -fx-background-color: white;
+}
+.text-field:focused{
+    -fx-border-color: #282E34;
+
+}
+.text-field:hover{
+
+}
+
+
+.button{
+    -fx-border-width: 0px 0px 0px 5px;
+    -fx-border-radius: 5px;
+    -fx-background-radius: 5px;
+    -fx-text-fill: ghostwhite;
+    -fx-background-color: #282E34;
+    -fx-font-weight: bolder;
+    -fx-font-size: 18px;
+    -fx-font-family: 'Open Sans','Helvetica Neue',Arial,sans-serif;
+}
+
+.button:focused{
+    -fx-border-width: 0px 0px 0px 0px;
+
+}
+.button:pressed{
+    -fx-text-fill: white;
+}
+.button:hover{
+    -fx-background-color: #929292;
+    -fx-text-fill: white;
+}
+.hyperlink{
+    -fx-border-color: transparent;
+    -fx-underline: false;
+}
+
+.hyperlink:hover{
+    -fx-text-fill: red;
+}
+
+.hyperlink:pressed{
+    -fx-underline: true;
+}

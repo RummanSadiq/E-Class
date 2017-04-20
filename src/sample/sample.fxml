@@ -1,0 +1,239 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.geometry.*?>
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.effect.Reflection?>
+
+<GridPane fx:id="home" alignment="center" stylesheets="@alpha.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
+   <children>
+      <VBox style="-fx-border-width: 7; -fx-border-color: white; -fx-opacity: 0.5;" GridPane.columnSpan="3" GridPane.rowIndex="1">
+         <padding>
+            <Insets left="20.0" />
+         </padding></VBox>
+
+       <VBox style="-fx-background-color: white; -fx-opacity: 0.4; -fx-background-radius: 5px;" GridPane.columnIndex="4" GridPane.rowIndex="1">
+
+       </VBox>
+   
+          <VBox alignment="CENTER_LEFT" prefHeight="243.0" prefWidth="311.0" style="-fx-padding: 20;" GridPane.columnIndex="4" GridPane.rowIndex="1">
+      <children>
+                    <Label style="-fx-font-weight: bolder; -fx-font-smoothing-type: gray;-fx-font-family: 'Open Sans','Helvetica Neue',Arial,sans-serif;" text="Email:">
+                        <effect>
+                            <DropShadow height="12.1" radius="5.55" width="12.1" />
+                        </effect>
+                        <font>
+                            <Font size="16.0" />
+                        </font>
+               <padding>
+                  <Insets bottom="5.0" />
+               </padding>
+               </Label>
+                    <TextField fx:id="email" />
+                    <Label style="-fx-font-weight: bolder; -fx-font-smoothing-type: gray;-fx-font-family: 'Open Sans','Helvetica Neue',Arial,sans-serif;" text="Password:">
+               <effect>
+                  <DropShadow height="12.1" radius="5.55" width="12.1" />
+               </effect>
+               <font>
+                  <Font size="16.0" />
+               </font>
+               <padding>
+                  <Insets bottom="5.0" top="5.0" />
+               </padding></Label>
+            <PasswordField fx:id="password">
+               <VBox.margin>
+                  <Insets bottom="10.0" />
+               </VBox.margin>
+            </PasswordField>
+            <HBox prefHeight="100.0" prefWidth="200.0">
+               <children>
+                          <Button fx:id="signIn" onAction="#handleSignIn" prefHeight="37.0" prefWidth="98.0" text="Sign In">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets left="5.0" top="5.0" />
+                     </HBox.margin></Button>
+                  <Hyperlink fx:id="forget" alignment="BOTTOM_RIGHT" onAction="#haldleForgetPassword" prefHeight="45.0" prefWidth="162.0" text="Forgot Password?" textAlignment="CENTER">
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets top="5.0" />
+                     </HBox.margin></Hyperlink>
+               </children>
+            </HBox>
+      </children>
+          </VBox>
+      <VBox alignment="CENTER" prefHeight="251.0" prefWidth="780.0" GridPane.columnSpan="3" GridPane.rowIndex="1">
+         <children>
+            <Label alignment="BOTTOM_LEFT" contentDisplay="LEFT" opacity="0.96" prefHeight="60.0" prefWidth="579.0" text="Welcome to Classmate" textAlignment="CENTER">
+               <font>
+                  <Font name="Arial Bold" size="48.0" />
+               </font>
+               <effect>
+                  <DropShadow height="12.1" radius="5.55" width="12.1" />
+               </effect>
+            </Label>
+            <Label contentDisplay="CENTER" prefHeight="32.0" prefWidth="427.0" text="Post Questions, Assignments &amp; Papers." textAlignment="CENTER">
+               <font>
+                  <Font name="Arial" size="18.0" />
+               </font>
+               <effect>
+                  <DropShadow height="12.1" radius="5.55" width="12.1" />
+               </effect>
+            </Label>
+            <Label prefHeight="27.0" prefWidth="377.0" text="Get Answers from Premium Tutors.">
+               <font>
+                  <Font name="Arial" size="18.0" />
+               </font>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+               <effect>
+                  <DropShadow height="12.1" radius="5.55" width="12.1" />
+               </effect>
+            </Label>
+         </children>
+         <GridPane.margin>
+            <Insets left="20.0" />
+         </GridPane.margin>
+      </VBox>
+      <VBox prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="4" GridPane.rowIndex="2">
+         <children>
+            <Button fx:id="signUp" mnemonicParsing="false" onAction="#handleSignUp" prefHeight="43.0" prefWidth="311.0" text="Sign Up! FREE">
+               <VBox.margin>
+                  <Insets top="10.0" />
+               </VBox.margin></Button>
+         </children>
+      </VBox>
+      <HBox prefHeight="100.0" prefWidth="200.0" style=": ;" GridPane.columnSpan="6" GridPane.rowIndex="3">
+         <children>
+            <VBox fx:id="time" onMouseEntered="#handleTime" onMouseExited="#handleTimeExit" prefHeight="111.0" prefWidth="399.0" />
+            <VBox prefHeight="111.0" prefWidth="52.0" />
+
+             <VBox fx:id="lock" centerShape="false" onMouseEntered="#handleLock" onMouseExited="#handleLockExit" prefHeight="111.0" prefWidth="292.0" scaleShape="false" style="-fx-background-image: url(/icons/slock.png); -fx-background-position: left center; -fx-background-repeat: stretch;-fx-background-size: 100%;">
+             </VBox>
+            <VBox prefHeight="111.0" prefWidth="40.0" />
+             <VBox fx:id="qua" onMouseEntered="#handleQua" onMouseExited="#handleQuaExit" prefHeight="111.0" prefWidth="307.0" style="-fx-background-image: url(/icons/squa.png); -fx-background-position: left center; -fx-background-repeat: stretch; -fx-background-size: 100%;">
+             </VBox>
+         </children></HBox>
+      <HBox prefHeight="100.0" prefWidth="200.0" GridPane.columnSpan="6" GridPane.rowIndex="4">
+         <children>
+            <VBox fx:id="time1" alignment="TOP_CENTER" onMouseEntered="#handleTime" onMouseExited="#handleTimeExit" prefHeight="205.0" prefWidth="290.0">
+               <children>
+                  <Label text="SPEED">
+                     <font>
+                        <Font name="Arial Black" size="24.0" />
+                     </font>
+                     <effect>
+                        <DropShadow height="12.1" radius="5.55" width="12.1" />
+                     </effect>
+                  </Label>
+                  <Label text="Receive help quickly. Choose your" wrapText="true">
+                     <effect>
+                        <DropShadow height="12.1" radius="5.55" width="12.1" />
+                     </effect>
+                     <font>
+                        <Font name="Arial" size="18.0" />
+                     </font>
+                  </Label>
+                   <Label text="own delivery time." wrapText="true">
+                       <effect>
+                           <DropShadow height="12.1" radius="5.55" width="12.1" />
+                       </effect>
+                       <font>
+                           <Font name="Arial" size="18.0" />
+                       </font>
+                   </Label>
+               </children>
+               <HBox.margin>
+                  <Insets left="100.0" />
+               </HBox.margin>
+            </VBox>
+            <VBox prefHeight="205.0" prefWidth="63.0" />
+            <VBox fx:id="lock1" alignment="TOP_CENTER" centerShape="false" onMouseEntered="#handleLock" onMouseExited="#handleLockExit" prefHeight="205.0" prefWidth="286.0" scaleShape="false">
+             <children>
+                 <Label text="PRIVACY">
+                     <font>
+                         <Font name="Arial Black" size="24.0" />
+                     </font>
+                     <effect>
+                         <DropShadow height="12.1" radius="5.55" width="12.1" />
+                     </effect>
+                 </Label>
+                 <Label text="Make questions 100% private" wrapText="true">
+                     <effect>
+                         <DropShadow height="12.1" radius="5.55" width="12.1" />
+                     </effect>
+                     <font>
+                         <Font name="Arial" size="18.0" />
+                     </font>
+                 </Label>
+                 <Label text="and anonymous." wrapText="true">
+                     <effect>
+                         <DropShadow height="12.1" radius="5.55" width="12.1" />
+                     </effect>
+                     <font>
+                         <Font name="Arial" size="18.0" />
+                     </font>
+                 </Label>
+             </children>
+         </VBox>
+             <VBox prefHeight="205.0" prefWidth="26.0" />
+            <VBox fx:id="qua1" alignment="TOP_CENTER" onMouseEntered="#handleQua" onMouseExited="#handleQuaExit" prefHeight="138.0" prefWidth="350.0">
+             <children>
+                 <Label text="QUALITY">
+                     <font>
+                         <Font name="Arial Black" size="24.0" />
+                     </font>
+                     <effect>
+                         <DropShadow height="12.1" radius="5.55" width="12.1" />
+                     </effect>
+                 </Label>
+                 <Label text="Get quality help from verified tutors." wrapText="true">
+                     <effect>
+                         <DropShadow height="12.1" radius="5.55" width="12.1" />
+                     </effect>
+                     <font>
+                         <Font name="Arial" size="18.0" />
+                     </font>
+                 </Label>
+             </children>
+             </VBox>
+         </children>
+      </HBox>
+
+   </children>
+   <columnConstraints>
+      <ColumnConstraints maxWidth="333.0" minWidth="230.0" prefWidth="333.0" />
+      <ColumnConstraints maxWidth="269.0" minWidth="171.0" prefWidth="171.0" />
+      <ColumnConstraints maxWidth="333.0" minWidth="134.0" prefWidth="333.0" />
+      <ColumnConstraints maxWidth="156.0" minWidth="72.0" prefWidth="75.0" />
+      <ColumnConstraints maxWidth="360.0" minWidth="286.0" prefWidth="311.0" />
+      <ColumnConstraints maxWidth="220.0" minWidth="69.0" prefWidth="69.0" />
+   </columnConstraints>
+
+   <rowConstraints>
+      <RowConstraints maxHeight="191.0" minHeight="107.0" prefHeight="107.0" />
+      <RowConstraints maxHeight="251.0" minHeight="167.0" prefHeight="251.0" />
+      <RowConstraints maxHeight="132.0" minHeight="78.0" prefHeight="78.0" />
+      <RowConstraints maxHeight="178.0" minHeight="111.0" prefHeight="111.0" />
+      <RowConstraints maxHeight="205.0" minHeight="138.0" prefHeight="205.0" />
+   </rowConstraints>
+   <padding>
+      <Insets left="30.0" />
+   </padding>
+
+</GridPane>

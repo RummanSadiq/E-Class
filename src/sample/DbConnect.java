@@ -3,6 +3,7 @@ package sample;
 import javafx.scene.control.DatePicker;
 
 import java.sql.*;
+import java.util.ArrayList;
 
 /**
  * Created by Rumman Sadiq on 12/23/2016.
@@ -12,11 +13,11 @@ public class DbConnect {
     private Statement st;
     private ResultSet rs;
     private PreparedStatement ps;
-    private String sessionName;
-    private String sessionFirstName;
-    private String sessionLastName;
-    private int sessionId;
-    private String sessionEmail;
+    private static String sessionName;
+    private static String sessionFirstName;
+    private static String sessionLastName;
+    private static int sessionId;
+    private static String sessionEmail;
     private int question_id;
     private String question_title;
     private String question_detail;
@@ -55,13 +56,14 @@ public class DbConnect {
     }
 
     public void storeQuestion(int userId, String title, String detail,Date deadLine, String pointFrom, String pointTo, String file){
-        String query = "insert into question (q_id, ref_id, title, detail, deadline, b_from, b_to, attach)"
+        String query = "insert into  (q_id, ref_id, title, detail, deadline, b_from, b_to, attach)"
                 + "values (?, ?, ?, ?, ?, ?, ?, ?)";
         try{
             ps = con.prepareStatement(query);
 
+            getAllQuestion(0);
             ps = con.prepareStatement(query);
-            ps.setString(1, null);
+            ps.setInt(1, count+1);
             ps.setInt(2, userId);
             ps.setString(3, title);
             ps.setString(4, detail);
@@ -80,7 +82,7 @@ public class DbConnect {
     }
 
     public void storeData(String firstName, String lastName, String email, String password, String date, String month, String year, String phone, String country){
-        String query = " insert into accInfo (id, f_name, l_name, email, password, date_dob, month_dob, year_dob, number, country_code)"
+        String query = "insert into accInfo (id, f_name, l_name, email, password, date_dob, month_dob, year_dob, number, country_code)"
                 + " values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         try {
             ps = con.prepareStatement(query);
@@ -103,29 +105,56 @@ public class DbConnect {
 
     }
 
-    public void searchQuestion(String str){
+
+    public ArrayList<Integer> searchQuestion(String str) {
+
+        ArrayList<Integer> list = new ArrayList<>();
         try{
-            String query  = "select * from question";
+            String query  = "select q_id, title from question";
             rs = st.executeQuery(query);
-            getAllQuestion(0);
-            searchId = new int[count];
-            int i = 0;
             while(rs.next()){
-                question_id = rs.getInt("q_id");
-                question_userId = rs.getInt("ref_id");
                 question_title = rs.getString("title");
+                if(question_title.contains(str)){
+                    list.add(rs.getInt("q_id"));
+                }
+            }
+            query  = "select q_id, detail from question";
+            rs = st.executeQuery(query);
+            while(rs.next()){
                 question_detail = rs.getString("detail");
-                  if(question_title.contains(str)) {
-                      searchId[i] = question_id;
-                  } else if(question_detail.contains(str)){
-                      searchId[i] = question_id;
-                  }
-                  i++;
+                if(question_detail.contains(str)){
+                    if(!list.contains(rs.getInt("q_id"))) {
+                        list.add(rs.getInt("q_id"));
+                    }
+                }
             }
 
         }catch(Exception ex){
             ex.printStackTrace();
         }
+        return list;
+    }
+
+
+
+    public int findID(String title) {
+
+        try{
+            String query  = "select * from question";
+            rs = st.executeQuery(query);
+            count = 0;
+            while(rs.next()){
+                count++;
+                question_title = rs.getString("title");
+                if(question_title.equalsIgnoreCase(title)){
+                    return rs.getInt("q_id");
+                }
+            }
+
+        }catch(Exception ex){
+            ex.printStackTrace();
+        }
+        return 1;
     }
 
     public void getAllQuestion(int id){

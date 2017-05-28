@@ -28,13 +28,13 @@ public class Controller {
         DbConnect connect = new DbConnect();
         WritePost wp = new WritePost();
 
-        if(connect.checkId(email.getText().toString(), password.getText().toString())){
+//        if(connect.checkId(email.getText().toString(), password.getText().toString())){
             wp.goToDash(signIn);
-        }
-        else{
-            email.setStyle("-fx-border-color: red;");
-            password.setStyle("-fx-border-color: red;");
-        }
+//        }
+//        else{
+//            email.setStyle("-fx-border-color: red;");
+//            password.setStyle("-fx-border-color: red;");
+//        }
 
     }
 

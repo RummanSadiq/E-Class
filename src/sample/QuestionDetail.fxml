@@ -72,7 +72,7 @@
                      </VBox.margin></Button>
                </children>
             </VBox>
-            <Button fx:id="back" mnemonicParsing="false" prefHeight="43.0" prefWidth="97.0" text="Back">
+            <Button fx:id="back" mnemonicParsing="false" onAction="#handleBack" prefHeight="43.0" prefWidth="97.0" text="Back">
                <GridPane.margin>
                   <Insets left="1.0" />
                </GridPane.margin>

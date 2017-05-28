@@ -1,13 +1,10 @@
 package sample;
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
-import javafx.geometry.Orientation;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.Parent;
@@ -15,14 +12,15 @@ import javafx.scene.Scene;
 import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollBar;
+import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
-import org.omg.CORBA.INITIALIZE;
 
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.ResourceBundle;
 
 /**
@@ -40,11 +38,19 @@ public class DashBoard implements Initializable {
     public HBox[] rowElements, postedBy;
     public Label[] q_title, q_postedby, q_date, q_budget, q_sub;
     public Hyperlink[] q_user;
+    private static String stringField;
+    public TextField searchBar;
 
 
     public void handleSearch() {
+        String str = searchBar.getText();
+        ArrayList<Integer> list = new ArrayList<>();
+        list = connect.searchQuestion(str);
+        Collections.reverse(list);
+        int[] arr = list.stream().mapToInt(i -> i).toArray();
+        grid.getChildren().removeAll(rowElements);
+        populateFeed(arr.length, arr);
 
-        System.out.println("Searching");
     }
 
     @Override
@@ -52,6 +58,16 @@ public class DashBoard implements Initializable {
 
         connect.getAllQuestion(0);
         int size = connect.getCount();
+        int[] array = new int[size];
+        for (int i = 0; i < size ; i++) {
+            array[i] = i;
+        }
+        populateFeed(size, array);
+//        scrollbar.setOrientation(Orientation.VERTICAL);
+//        grid.add(scrollbar, 5, 0, 1, noRows);
+    }
+
+    private void populateFeed(int size, int[] array) {
         int key = size;
         size++;
         int j = 0;
@@ -93,7 +109,6 @@ public class DashBoard implements Initializable {
 
         postedBy = new HBox[size];
         postedBy[j] = new HBox();
-
 
 
         grid.setHgap(0);
@@ -152,7 +167,8 @@ public class DashBoard implements Initializable {
             budget[j].getChildren().addAll(q_budget[j]);
             subject[j].getChildren().addAll(q_sub[j]);
             rowElements[j].getChildren().addAll(title[j], date[j], budget[j], subject[j]);
-            connect.getAllQuestion(key);
+
+            connect.getAllQuestion(array[key-1]);
 
 
             q_title[j].setText(connect.getQuestion_title());
@@ -172,6 +188,15 @@ public class DashBoard implements Initializable {
             rowElements[j].setId("row");
             try{
                 grid.add(rowElements[j], 0, index, 4, 1);
+                rowElements[j].setOnMousePressed(new EventHandler<MouseEvent>() {
+                    public void handle(MouseEvent me) {
+                        try {
+                            handleDetail(me);
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                });
 
             } catch (Exception ex){
                 ex.printStackTrace();
@@ -194,8 +219,6 @@ public class DashBoard implements Initializable {
             budget[j] = new VBox();
             postedBy[j] = new HBox();
         }
-//        scrollbar.setOrientation(Orientation.VERTICAL);
-//        grid.add(scrollbar, 5, 0, 1, noRows);
     }
 
 
@@ -213,6 +236,12 @@ public class DashBoard implements Initializable {
 //        Integer colIndex = GridPane.getColumnIndex(grid);
 //        int rowIndex = GridPane.getRowIndex(grid);
 
+//        int row = (int)e.getSceneY();
+        HBox node = (HBox) e.getSource();
+        VBox vBox = (VBox) node.getChildren().get(0);
+        Label label = (Label) vBox.getChildren().get(0);
+        setStringField(label.getText());
+
 
         Stage primaryStage = (Stage) grid.getScene().getWindow();
         Parent root = FXMLLoader.load(getClass().getResource("QuestionDetail.fxml"));
@@ -229,5 +258,14 @@ public class DashBoard implements Initializable {
         primaryStage.setScene(new Scene(root, 1024, 705));//width, hight
         primaryStage.show();
         primaryStage.setMaximized(true);
+    }
+
+
+    public String getStringField() {
+        return stringField;
+    }
+
+    public void setStringField(String stringField) {
+        this.stringField = stringField;
     }
 }

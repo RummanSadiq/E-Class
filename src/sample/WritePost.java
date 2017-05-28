@@ -49,7 +49,7 @@ public class WritePost {
         DbConnect connect = new DbConnect();
         java.sql.Timestamp sqlTimestamp = new java.sql.Timestamp(date.getTime());
         java.sql.Date dat = new java.sql.Date(sqlTimestamp.getTime());
-        connect.storeQuestion(connect.getSessionId(),questionTitle.getText().toString(), questionDetail.getText().toString(), dat ,questionFrom.getText().toString(), questionTo.getText().toString(), filePath.getText().toString());
+        connect.storeQuestion(connect.getSessionId(),questionTitle.getText(), questionDetail.getText(), dat ,questionFrom.getText(), questionTo.getText(), filePath.getText());
 
 
 

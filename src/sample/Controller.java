@@ -2,6 +2,7 @@ package sample;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -13,8 +14,10 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
 
-public class Controller {
+public class Controller implements Initializable{
 
     public Button signIn, signUp, changePassword;
     public VBox time, lock, qua;
@@ -22,29 +25,26 @@ public class Controller {
     public PasswordField password;
     public Hyperlink forget;
     public Button confirmation;
+    public DbConnect connect;
 
-    public void handleSignIn() throws IOException {
 
-        DbConnect connect = new DbConnect();
-        WritePost wp = new WritePost();
-
-//        if(connect.checkId(email.getText().toString(), password.getText().toString())){
-            wp.goToDash(signIn);
-//        }
-//        else{
-//            email.setStyle("-fx-border-color: red;");
-//            password.setStyle("-fx-border-color: red;");
-//        }
-
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        connect = new DbConnect();
     }
 
 
-    private void slideShow() {
-        int i = 0;
-        int totalImages = 17;
-        for (i = 0; i < totalImages; i++) {
+    public void handleSignIn() throws IOException {
+        WritePost wp = new WritePost();
 
+        if(connect.checkId(email.getText().toString(), password.getText().toString())){
+            wp.goToDash(signIn);
         }
+        else{
+            email.setStyle("-fx-border-color: red;");
+            password.setStyle("-fx-border-color: red;");
+        }
+
     }
 
     public void handleTime() {
@@ -71,6 +71,8 @@ public class Controller {
         qua.setStyle("-fx-background-image: url(/icons/squa.png); -fx-background-position: left center; -fx-background-repeat: stretch;-fx-background-size: 100%;");
     }
 
+
+
     public void handleSignUp() throws IOException {
         Stage primaryStage = (Stage) signUp.getScene().getWindow();
         Parent root = FXMLLoader.load(getClass().getResource("signupScene.fxml"));
@@ -79,8 +81,6 @@ public class Controller {
         primaryStage.show();
         primaryStage.setMaximized(true);
     }
-
-
 
     public void haldleForgetPassword() throws IOException {
         Stage primaryStage = (Stage) forget.getScene().getWindow();

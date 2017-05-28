@@ -22,6 +22,7 @@ import javafx.stage.Stage;
 
 
     public static void main(String[] args) {
+
         DbConnect connect;
         connect = new DbConnect();
         launch(args);

@@ -120,12 +120,13 @@
       </VBox>
       <HBox prefHeight="100.0" prefWidth="200.0" style=": ;" GridPane.columnSpan="6" GridPane.rowIndex="3">
          <children>
-            <VBox fx:id="time" onMouseEntered="#handleTime" onMouseExited="#handleTimeExit" prefHeight="111.0" prefWidth="399.0" />
+            <VBox prefHeight="111.0" prefWidth="86.0" />
+            <VBox fx:id="time" onMouseEntered="#handleTime" onMouseExited="#handleTimeExit" prefHeight="111.0" prefWidth="317.0" />
             <VBox prefHeight="111.0" prefWidth="52.0" />
 
-             <VBox fx:id="lock" centerShape="false" onMouseEntered="#handleLock" onMouseExited="#handleLockExit" prefHeight="111.0" prefWidth="292.0" scaleShape="false" style="-fx-background-image: url(/icons/slock.png); -fx-background-position: left center; -fx-background-repeat: stretch;-fx-background-size: 100%;">
+             <VBox fx:id="lock" centerShape="false" onMouseEntered="#handleLock" onMouseExited="#handleLockExit" prefHeight="111.0" prefWidth="283.0" scaleShape="false" style="-fx-background-image: url(/icons/slock.png); -fx-background-position: left center; -fx-background-repeat: stretch;-fx-background-size: 100%;">
              </VBox>
-            <VBox prefHeight="111.0" prefWidth="40.0" />
+            <VBox prefHeight="111.0" prefWidth="50.0" />
              <VBox fx:id="qua" onMouseEntered="#handleQua" onMouseExited="#handleQuaExit" prefHeight="111.0" prefWidth="307.0" style="-fx-background-image: url(/icons/squa.png); -fx-background-position: left center; -fx-background-repeat: stretch; -fx-background-size: 100%;">
              </VBox>
          </children></HBox>

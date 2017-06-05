@@ -41,16 +41,16 @@
 #logo{
     -fx-background-image: url("/Logo/test.png");
     -fx-background-repeat: stretch;
-    -fx-background-size: 75%;
+    -fx-background-size: 85%;
     -fx-background-position: center center;
-
+    -fx-cursor: hand;
 }
 
 #post{
 
     -fx-background-image: url("/Avatar/q.png");
     -fx-background-repeat: stretch;
-    -fx-background-size: 70%;
+    -fx-background-size: 85%;
     -fx-background-position: center center;
 
     -fx-cursor: hand;
@@ -109,7 +109,7 @@
 #avatar{
     -fx-background-image: url("/Avatar/m.png");
     -fx-background-repeat: stretch;
-    -fx-background-size: 55%;
+    -fx-background-size: 65%;
     -fx-background-position: center center;
 }
 

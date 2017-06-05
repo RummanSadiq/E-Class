@@ -19,27 +19,27 @@
 <GridPane fx:id="dash" alignment="center" stylesheets="@dash.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.DashBoard">
 
     <columnConstraints>
-        <ColumnConstraints maxWidth="172.9" minWidth="172.9" prefWidth="172.9" />
-        <ColumnConstraints maxWidth="172.9" minWidth="172.9" prefWidth="172.9" />
-        <ColumnConstraints maxWidth="172.9" minWidth="172.9" prefWidth="172.9" />
-        <ColumnConstraints maxWidth="172.9" minWidth="172.9" prefWidth="172.9" />
-        <ColumnConstraints maxWidth="172.9" minWidth="172.9" prefWidth="172.9" />
-        <ColumnConstraints maxWidth="172.9" minWidth="172.9" prefWidth="172.9" />
+        <ColumnConstraints maxWidth="227.6" minWidth="227.6" prefWidth="227.6" />
+        <ColumnConstraints maxWidth="227.6" minWidth="227.6" prefWidth="227.6" />
+        <ColumnConstraints maxWidth="227.6" minWidth="227.6" prefWidth="227.6" />
+        <ColumnConstraints maxWidth="227.6" minWidth="227.6" prefWidth="227.6" />
+        <ColumnConstraints maxWidth="227.6" minWidth="227.6" prefWidth="227.6" />
+        <ColumnConstraints maxWidth="227.6" minWidth="227.6" prefWidth="227.6" />
     </columnConstraints>
 
     <rowConstraints>
-        <RowConstraints maxHeight="100.0" minHeight="100.0" prefHeight="100.0" />
-        <RowConstraints maxHeight="121.0" minHeight="121.0" prefHeight="121.0" />
-        <RowConstraints maxHeight="121.0" minHeight="121.0" prefHeight="121.0" />
-        <RowConstraints maxHeight="121.0" minHeight="121.0" prefHeight="121.0" />
-        <RowConstraints maxHeight="121.0" minHeight="121.0" prefHeight="121.0" />
-        <RowConstraints maxHeight="121.0" minHeight="121.0" prefHeight="121.0" />
+        <RowConstraints maxHeight="102.0" minHeight="102.0" prefHeight="102.0" />
+        <RowConstraints maxHeight="120.88" minHeight="120.88" prefHeight="120.88" />
+        <RowConstraints maxHeight="120.88" minHeight="120.88" prefHeight="120.88" />
+        <RowConstraints maxHeight="120.88" minHeight="120.88" prefHeight="120.88" />
+        <RowConstraints maxHeight="120.88" minHeight="120.88" prefHeight="120.88" />
+        <RowConstraints maxHeight="120.88" minHeight="120.88" prefHeight="120.88" />
     </rowConstraints>
    <children>
       <GridPane style="-fx-background-color: #282E34;" GridPane.columnSpan="6">
         <columnConstraints>
-          <ColumnConstraints hgrow="SOMETIMES" maxWidth="1189.0" minWidth="10.0" prefWidth="272.0" />
-            <ColumnConstraints hgrow="SOMETIMES" maxWidth="729.0" minWidth="10.0" prefWidth="352.0" />
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="1189.0" minWidth="10.0" prefWidth="200.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="729.0" minWidth="10.0" prefWidth="424.0" />
             <ColumnConstraints hgrow="SOMETIMES" maxWidth="709.0" minWidth="10.0" prefWidth="136.0" />
             <ColumnConstraints hgrow="NEVER" maxWidth="709.0" minWidth="10.0" percentWidth="0.0" prefWidth="131.0" />
           <ColumnConstraints hgrow="SOMETIMES" maxWidth="709.0" minWidth="10.0" prefWidth="154.0" />
@@ -48,11 +48,13 @@
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Pane fx:id="avatar" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="4">
-               </Pane>
+            <Pane fx:id="avatar" maxHeight="90.0" maxWidth="120.0" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="4">
+               <GridPane.margin>
+                  <Insets left="10.0" />
+               </GridPane.margin></Pane>
             <VBox alignment="CENTER_LEFT" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="3" GridPane.vgrow="NEVER">
                <children>
-                  <Hyperlink lineSpacing="0.5" text="Rumman Bin Sadiq" wrapText="true">
+                  <Hyperlink fx:id="userName" lineSpacing="0.5" text="Rumman Bin Sadiq" wrapText="true">
                      <VBox.margin>
                         <Insets bottom="-3.0" />
                      </VBox.margin></Hyperlink>
@@ -75,7 +77,7 @@
             </VBox>
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1">
                <children>
-                  <TextField fx:id="searchBar" prefHeight="45.0" prefWidth="300.0" promptText="Search Anything!" />
+                  <TextField fx:id="searchBar" prefHeight="45.0" prefWidth="400.0" promptText="Search Anything!" />
                   <Pane fx:id="search" onMouseClicked="#handleSearch" prefHeight="45.0" prefWidth="45.0" HBox.hgrow="NEVER">
                      <HBox.margin>
                         <Insets bottom="27.0" top="28.0" />
@@ -83,15 +85,18 @@
                   </Pane>
                </children>
             </HBox>
-            <Pane fx:id="post" onMouseClicked="#handleWriteQuestion" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" />
-            <Pane fx:id="logo" prefHeight="200.0" prefWidth="200.0" />
+            <Pane fx:id="post" maxHeight="100.0" maxWidth="120.0" onMouseClicked="#handleWriteQuestion" prefHeight="120.0" prefWidth="200.0" GridPane.columnIndex="2">
+               <GridPane.margin>
+                  <Insets left="50.0" />
+               </GridPane.margin></Pane>
+            <Pane fx:id="logo" onMouseClicked="#handleLogo" prefHeight="200.0" prefWidth="200.0" />
          </children>
       </GridPane>
       <VBox GridPane.rowIndex="1" GridPane.rowSpan="5">
          <children>
             <Pane prefWidth="228.0" style="-fx-border-width: 0 7 0 0; -fx-border-color: #282E34; -fx-background-color: #e6e6e6">
                <children>
-                  <Label alignment="CENTER" prefHeight="43.0" prefWidth="166.0" style="-fx-background-color: white; -fx-text-fill: #282E34" text="Subjects" />
+                  <Label alignment="CENTER" prefHeight="43.0" prefWidth="220.0" style="-fx-background-color: white; -fx-text-fill: #282E34" text="Subjects" />
                </children>
             </Pane>
             <VBox maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="568.0" prefWidth="230.0" style="-fx-border-width: 0 7 0 0; -fx-border-color: #282E34; -fx-background-color: #e6e6e6" GridPane.rowIndex="1" GridPane.rowSpan="5">
@@ -138,25 +143,32 @@
                      <children>
                         <HBox alignment="CENTER_LEFT" prefHeight="55.0" prefWidth="1140.0" style=" -fx-background-color: #282E34 ">
                            <children>
-                              <Label style="     -fx-font-weight: bolder;     -fx-text-fill: white;     -fx-font-size: 16pt;" text="TITLE">
-                                 <HBox.margin>
-                                    <Insets left="200.0" right="90.0" />
-                                 </HBox.margin>
-                              </Label>
-                              <Label style="     -fx-font-weight: bolder;     -fx-text-fill: white;     -fx-font-size: 16pt;" text="DEAD LINE">
-                                 <HBox.margin>
-                                    <Insets left="100.0" right="50.0" />
-                                 </HBox.margin>
-                              </Label>
-                              <Label style="     -fx-font-weight: bolder;     -fx-text-fill: white;     -fx-font-size: 16pt;" text="BUDGET">
-                                 <HBox.margin>
-                                    <Insets right="50.0" />
-                                 </HBox.margin>
-                              </Label>
-                              <Label style="     -fx-font-weight: bolder;     -fx-text-fill: white;     -fx-font-size: 16pt;" text="SUBJECT" />
+                              <VBox alignment="CENTER" maxWidth="200.0" minWidth="600.0" prefWidth="200.0">
+                                 <children>
+                                    <Label style="     -fx-font-weight: bolder;     -fx-text-fill: white;     -fx-font-size: 16pt;" text="TITLE">
+                                       <HBox.margin>
+                                          <Insets left="200.0" right="90.0" />
+                                       </HBox.margin>
+                                    </Label>
+                                 </children>
+                              </VBox>
+                              <VBox alignment="CENTER" minWidth="150.0">
+                                 <children>
+                                    <Label style="     -fx-font-weight: bolder;     -fx-text-fill: white;     -fx-font-size: 16pt;" text="TIME">
+                                       <HBox.margin>
+                                          <Insets left="100.0" right="50.0" />
+                                       </HBox.margin>
+                                    </Label>
+                                 </children>
+                              </VBox>
+                              <VBox alignment="CENTER" minWidth="380.0">
+                                 <children>
+                                    <Label style="     -fx-font-weight: bolder;     -fx-text-fill: white;     -fx-font-size: 16pt;" text="SUBJECT" />
+                                 </children>
+                              </VBox>
                            </children>
                         </HBox>
-                        <ScrollPane hbarPolicy="NEVER" layoutY="55.0" prefHeight="521.0" prefViewportWidth="1140.0" prefWidth="860.0" style="-fx-font-size: 15px" styleClass="edge-to-edge" vbarPolicy="AS_NEEDED">
+                        <ScrollPane hbarPolicy="NEVER" layoutY="55.0" prefHeight="521.0" prefViewportWidth="1140.0" prefWidth="1140.0" style="-fx-font-size: 15px" styleClass="edge-to-edge" vbarPolicy="AS_NEEDED">
                            <content>
                               <GridPane fx:id="grid" layoutY="55.0" maxHeight="Infinity" prefHeight="NaN" prefWidth="1140.0">
                                  <!--<children>-->

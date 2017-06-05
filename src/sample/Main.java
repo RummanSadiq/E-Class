@@ -13,9 +13,9 @@ import javafx.stage.Stage;
         @Override
         public void start(Stage primaryStage) throws Exception{
             this.primaryStage = primaryStage;
-            Parent root = FXMLLoader.load(getClass().getResource("sample.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("dashboard.fxml"));
             primaryStage.setTitle("Classmate - Sign In");
-            primaryStage.setScene(new Scene(root, 1024, 690));//width, hight
+            primaryStage.setScene(new Scene(root, 1366,706));//width, hight
             primaryStage.show();
             primaryStage.setMaximized(true);
         }
@@ -23,8 +23,8 @@ import javafx.stage.Stage;
 
     public static void main(String[] args) {
 
-        DbConnect connect;
-        connect = new DbConnect();
+        DBConnect connect;
+        connect = new DBConnect();
         launch(args);
 
     }

@@ -1,12 +1,10 @@
 package sample;
 
-import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
-import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Hyperlink;
@@ -30,22 +28,23 @@ public class DashBoard implements Initializable {
     public Pane search, post;
     public GridPane grid;
     public ScrollBar scrollbar;
-    public DbConnect connect = new DbConnect();
+    public DBConnect connect = new DBConnect();
     public Hyperlink signout;
 
 
-    public VBox[] subject, budget, date, title;
+    public VBox[] subject, date, title;
     public HBox[] rowElements, postedBy;
-    public Label[] q_title, q_postedby, q_date, q_budget, q_sub;
+    public Label[] q_title, q_postedby, q_date,  q_sub;
     public Hyperlink[] q_user;
     private static String stringField;
     public TextField searchBar;
+    public Hyperlink userName;
+    public Pane logo;
 
 
     public void handleSearch() {
         String str = searchBar.getText();
-        ArrayList<Integer> list = new ArrayList<>();
-        list = connect.searchQuestion(str);
+        ArrayList<Integer> list = connect.searchQuestion(str);
         Collections.reverse(list);
         int[] arr = list.stream().mapToInt(i -> i).toArray();
         grid.getChildren().removeAll(rowElements);
@@ -55,13 +54,9 @@ public class DashBoard implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-
-        connect.getAllQuestion(0);
+        userName.setText(connect.getSessionName());
         int size = connect.getCount();
-        int[] array = new int[size];
-        for (int i = 0; i < size ; i++) {
-            array[i] = i;
-        }
+        int[] array = connect.getAllIDs();
         populateFeed(size, array);
 //        scrollbar.setOrientation(Orientation.VERTICAL);
 //        grid.add(scrollbar, 5, 0, 1, noRows);
@@ -72,7 +67,6 @@ public class DashBoard implements Initializable {
         size++;
         int j = 0;
 
-        scrollbar = new ScrollBar();
 
         rowElements = new HBox[size];
         rowElements[j] = new HBox();
@@ -85,9 +79,6 @@ public class DashBoard implements Initializable {
 
         q_date = new Label[size];
         q_date[j] = new Label();
-
-        q_budget = new Label[size];
-        q_budget[j] = new Label();
 
         q_sub = new Label[size];
         q_sub[j] = new Label();
@@ -104,9 +95,6 @@ public class DashBoard implements Initializable {
         date = new VBox[size];
         date[j] = new VBox();
 
-        budget = new VBox[size];
-        budget[j] = new VBox();
-
         postedBy = new HBox[size];
         postedBy[j] = new HBox();
 
@@ -120,38 +108,32 @@ public class DashBoard implements Initializable {
         while(key != 0){
 
             title[j].setPrefHeight(92);
-            title[j].setPrefWidth(400);
+            title[j].setPrefWidth(600);
             title[j].setAlignment(Pos.CENTER_LEFT);
             title[j].setStyle("-fx-font-size: 17");
             q_title[j].setWrapText(true);
-            postedBy[j].setPrefWidth(400);
+            postedBy[j].setPrefWidth(600);
             postedBy[j].setPrefHeight(34);
             q_postedby[j].setText("Posted by: ");
             q_postedby[j].setStyle("-fx-font-size: 12; -fx-text-fill: #828282;");
-            q_postedby[j].setPrefHeight(37);
-            q_postedby[j].setPrefWidth(85);
-            q_user[j].setPrefHeight(39);
-            q_user[j].setPrefWidth(100);
-            connect.setQuestion_user(key);
-            q_user[j].setText(connect.getQuestion_user());
+//            q_postedby[j].setPrefHeight(37);
+//            q_postedby[j].setPrefWidth(85);
+//            q_user[j].setPrefHeight(39);
+//            q_user[j].setPrefWidth(100);
             q_user[j].setStyle("-fx-font-size: 12");
 
-            date[j].setPrefWidth(120);
+            date[j].setPrefWidth(180);
             date[j].setAlignment(Pos.CENTER);
             date[j].setStyle("-fx-font-size: 14");
-            budget[j].setPrefHeight(92);
-            budget[j].setPrefWidth(120);
-            budget[j].setAlignment(Pos.CENTER);
-            budget[j].setStyle("-fx-font-size: 14");
-            subject[j].setPrefWidth(200);
+            subject[j].setPrefWidth(350);
             subject[j].setPrefHeight(92);
             subject[j].setAlignment(Pos.CENTER);
             subject[j].setStyle("-fx-font-size: 14");
 
             rowElements[j].setStyle(" -fx-border-width: 0 0 2 0; -fx-border-color: #D7D7D7;");
-            rowElements[j].setPrefHeight(100);
-//            rowElements[j].setMinHeight(200);
-            rowElements[j].setPrefWidth(860);
+//            rowElements[j].setPrefHeight(100);
+////            rowElements[j].setMinHeight(200);
+//            rowElements[j].setPrefWidth(860);
 
             if(j == 0){
                 rowElements[j].setPadding(new Insets(015, 20, 015, 20));
@@ -164,22 +146,21 @@ public class DashBoard implements Initializable {
             postedBy[j].getChildren().addAll(q_postedby[j], q_user[j]);
             title[j].getChildren().addAll(q_title[j], postedBy[j]);
             date[j].getChildren().addAll(q_date[j]);
-            budget[j].getChildren().addAll(q_budget[j]);
             subject[j].getChildren().addAll(q_sub[j]);
-            rowElements[j].getChildren().addAll(title[j], date[j], budget[j], subject[j]);
+            rowElements[j].getChildren().addAll(title[j], date[j], subject[j]);
 
-            connect.getAllQuestion(array[key-1]);
+            connect.getQuestion(array[key-1]);
 
+            System.out.println(array[key-1]);
 
+            q_user[j].setText(connect.getQuestion_user());
             q_title[j].setText(connect.getQuestion_title());
-
-            date[j].setPrefHeight(92);
+//
+//            date[j].setPrefHeight(92);
 
             q_date[j].setText(connect.getQuestion_date());
 
-            q_budget[j].setText(connect.getQuestion_bfrom() + " - " + connect.getQuestion_bto());
-
-            q_sub[j].setText("Software Engineering");
+            q_sub[j].setText(connect.findSubjectName(connect.getQuestion_subject_id()));
 
             key--;
 
@@ -206,17 +187,14 @@ public class DashBoard implements Initializable {
             j++;
             noRows++;
             rowElements[j] = new HBox();
-            q_budget[j] = new Label();
             q_postedby[j] = new Label();
             q_title[j] = new Label();
             q_date[j] = new Label();
-            q_budget[j] = new Label();
             q_sub[j] = new Label();
             q_user[j] = new Hyperlink();
             title[j] = new VBox();
             subject[j] = new VBox();
             date[j] = new VBox();
-            budget[j] = new VBox();
             postedBy[j] = new HBox();
         }
     }
@@ -224,9 +202,9 @@ public class DashBoard implements Initializable {
 
     public void handleWriteQuestion() throws IOException {
         Stage primaryStage = (Stage) post.getScene().getWindow();
-        Parent root = FXMLLoader.load(getClass().getResource("writepost.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("writePost.fxml"));
         primaryStage.setTitle("Classmate - Ask Question!");
-        primaryStage.setScene(new Scene(root, 1024, 705));//width, hight
+        primaryStage.setScene(new Scene(root, 1366,768));//width, hight
         primaryStage.show();
         primaryStage.setMaximized(true);
     }
@@ -246,7 +224,7 @@ public class DashBoard implements Initializable {
         Stage primaryStage = (Stage) grid.getScene().getWindow();
         Parent root = FXMLLoader.load(getClass().getResource("QuestionDetail.fxml"));
         primaryStage.setTitle("Classmate - Question Details!");
-        primaryStage.setScene(new Scene(root, 1024, 705));//width, hight
+        primaryStage.setScene(new Scene(root, 1366,706));//width, hight
         primaryStage.show();
         primaryStage.setMaximized(true);
     }
@@ -255,7 +233,7 @@ public class DashBoard implements Initializable {
         Stage primaryStage = (Stage) signout.getScene().getWindow();
         Parent root = FXMLLoader.load(getClass().getResource("sample.fxml"));
         primaryStage.setTitle("Classmate - Sign In!");
-        primaryStage.setScene(new Scene(root, 1024, 705));//width, hight
+        primaryStage.setScene(new Scene(root, 1366,706));//width, hight
         primaryStage.show();
         primaryStage.setMaximized(true);
     }
@@ -267,5 +245,14 @@ public class DashBoard implements Initializable {
 
     public void setStringField(String stringField) {
         this.stringField = stringField;
+    }
+
+    public void handleLogo(MouseEvent mouseEvent) throws IOException {
+        Stage primaryStage = (Stage) logo.getScene().getWindow();
+        Parent root = FXMLLoader.load(getClass().getResource("dashboard.fxml"));
+        primaryStage.setTitle("Classmate - Dashboard");
+        primaryStage.setScene(new Scene(root, 1366,705.9));//width, hight
+        primaryStage.show();
+        primaryStage.setMaximized(true);
     }
 }

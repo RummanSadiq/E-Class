@@ -1,6 +1,5 @@
 package sample;
 
-import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
@@ -9,7 +8,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Hyperlink;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
@@ -25,12 +23,12 @@ public class Controller implements Initializable{
     public PasswordField password;
     public Hyperlink forget;
     public Button confirmation;
-    public DbConnect connect;
+    public DBConnect connect;
 
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        connect = new DbConnect();
+        connect = new DBConnect();
     }
 
 
@@ -77,7 +75,7 @@ public class Controller implements Initializable{
         Stage primaryStage = (Stage) signUp.getScene().getWindow();
         Parent root = FXMLLoader.load(getClass().getResource("signupScene.fxml"));
         primaryStage.setTitle("Classmate - Sign Up");
-        primaryStage.setScene(new Scene(root, 1024, 690));//width, hight
+        primaryStage.setScene(new Scene(root, 1366,768));//width, hight
         primaryStage.show();
         primaryStage.setMaximized(true);
     }
@@ -86,7 +84,7 @@ public class Controller implements Initializable{
         Stage primaryStage = (Stage) forget.getScene().getWindow();
         Parent root = FXMLLoader.load(getClass().getResource("codeReset.fxml"));
         primaryStage.setTitle("Classmate - Reset Password!");
-        primaryStage.setScene(new Scene(root, 1024, 705));//width, hight
+        primaryStage.setScene(new Scene(root, 1366,768));//width, hight
         primaryStage.show();
         primaryStage.setMaximized(true);
     }
@@ -105,7 +103,7 @@ public class Controller implements Initializable{
         Stage primaryStage = (Stage) b.getScene().getWindow();
         Parent root = FXMLLoader.load(getClass().getResource("sample.fxml"));
         primaryStage.setTitle("Classmate - Sign In");
-        primaryStage.setScene(new Scene(root, 1024, 705));//width, hight
+        primaryStage.setScene(new Scene(root, 1366,768));//width, hight
         primaryStage.show();
         primaryStage.setMaximized(true);
     }

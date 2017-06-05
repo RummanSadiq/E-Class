@@ -14,6 +14,23 @@
     -fx-font-size: 14pt;
     -fx-font-family: 'Open Sans','Helvetica Neue',Arial,sans-serif;
 }
+
+#delete{
+
+    -fx-background-image: url("/icons/delete1600.png");
+    -fx-background-repeat: stretch;
+    -fx-background-size: 40%;
+    -fx-background-position: center center;
+
+    -fx-cursor: hand;
+}
+#delete:hover{
+    -fx-opacity: 0.4;
+}
+#delete:pressed{
+    -fx-opacity: 1;
+}
+
 /*.button{*/
 
     /*-fx-font-weight: bolder;*/
